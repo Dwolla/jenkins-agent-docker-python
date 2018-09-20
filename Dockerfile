@@ -12,12 +12,15 @@ RUN apk add --update \
         git \
         zip \
         gcc \
+        g++ \
         musl-dev \
         libffi-dev \
         openssl-dev \
+        unixodbc-dev \
         && \
     pip install --upgrade pip && \
     pip install awscli virtualenv && \
-    rm -rf /var/cache/apk/*
+    rm -rf /var/cache/apk/* && \
+    chown -R jenkins /usr/lib/python2.7/site-packages
 
 USER jenkins
