@@ -19,6 +19,7 @@ RUN apk add --update \
         unixodbc-dev \
         && \
     pip install --upgrade pip && \
+    pip install --upgrade setuptools && \
     pip install awscli virtualenv && \
     rm -rf /var/cache/apk/* && \
     chown -R jenkins /usr/lib/python2.7/site-packages
