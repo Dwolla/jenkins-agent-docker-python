@@ -5,8 +5,10 @@ LABEL org.label-schema.vcs-url="https://github.com/Dwolla/jenkins-agent-docker-p
 USER root
 RUN apk add --update \
         python \
+        python3 \
         py-pip \
         python-dev \
+        python3-dev \
         jq \ 
         make \
         git \
