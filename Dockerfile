@@ -1,4 +1,4 @@
-FROM dwolla/jenkins-agent-core
+FROM dwolla/jenkins-agent-core:alpine
 MAINTAINER Dwolla Dev <dev+jenkins-python@dwolla.com>
 LABEL org.label-schema.vcs-url="https://github.com/Dwolla/jenkins-agent-docker-python"
 
@@ -20,9 +20,15 @@ RUN apk add --update \
         openssl-dev \
         unixodbc-dev \
         && \
-    pip install --upgrade pip && \
-    pip install --upgrade setuptools && \
-    pip install awscli virtualenv && \
+    pip install --upgrade \
+        pip \
+        setuptools \
+        virtualenv \
+        && \
+    pip3 install --upgrade \
+        pip \
+        setuptools \
+        && \
     rm -rf /var/cache/apk/* && \
     chown -R jenkins /usr/lib/python2.7/site-packages
 
