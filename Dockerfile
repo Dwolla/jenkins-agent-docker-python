@@ -4,21 +4,26 @@ LABEL org.label-schema.vcs-url="https://github.com/Dwolla/jenkins-agent-docker-p
 
 USER root
 RUN apk add --update \
+        build-base \
+        freetype-dev \
+        git \
+        gcc \
+        gfortran \
+        g++ \
+        jq \ 
+        libffi-dev \
+        make \
+        musl-dev \
+        openssl-dev \
+        openblas-dev \
+        pkgconfig \
+        py-pip \
         python \
         python3 \
-        py-pip \
         python-dev \
         python3-dev \
-        jq \ 
-        make \
-        git \
-        zip \
-        gcc \
-        g++ \
-        musl-dev \
-        libffi-dev \
-        openssl-dev \
         unixodbc-dev \
+        zip \
         && \
     pip install --upgrade \
         pip \
@@ -27,7 +32,9 @@ RUN apk add --update \
         && \
     pip3 install --upgrade \
         pip \
+        scipy \
         setuptools \
+        virtualenv \
         && \
     rm -rf /var/cache/apk/* && \
     chown -R jenkins /usr/lib/python2.7/site-packages
