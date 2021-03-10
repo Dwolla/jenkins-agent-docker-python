@@ -7,6 +7,7 @@ RUN apk add --update \
         python \
         python3 \
         py-pip \
+        py3-pip \
         python-dev \
         python3-dev \
         jq \ 
@@ -20,12 +21,15 @@ RUN apk add --update \
         openssl-dev \
         unixodbc-dev \
         && \
+    pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install --no-cache-dir -U \
+        && \
     pip install --upgrade \
         pip \
         setuptools \
-        virtualenv \
+        virtualenv && \
+    pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install --no-cache-dir -U \
         && \
-    pip3 install --upgrade \
+    pip3 install --upgrade --no-cache-dir \
         pip \
         setuptools \
         && \
