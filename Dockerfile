@@ -21,17 +21,18 @@ RUN apk add --update \
         openssl-dev \
         unixodbc-dev \
         && \
-    pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install --no-cache-dir -U \
-        && \
-    pip install --upgrade \
+    pip install --upgrade --no-cache-dir \
         pip \
         setuptools \
-        virtualenv && \
-    pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install --no-cache-dir -U \
+        virtualenv \
+        && \
+    pip list --outdated --format=freeze | cut -d = -f 1  | xargs -r -n1 pip install --no-cache-dir -U \
         && \
     pip3 install --upgrade --no-cache-dir \
         pip \
         setuptools \
+        && \
+    pip3 list --outdated --format=freeze | cut -d = -f 1  | xargs -r -n1 pip3 install --no-cache-dir -U \
         && \
     rm -rf /var/cache/apk/* && \
     chown -R jenkins /usr/lib/python2.7/site-packages
