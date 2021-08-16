@@ -4,13 +4,15 @@ LABEL org.label-schema.vcs-url="https://github.com/Dwolla/jenkins-agent-docker-p
 
 USER root
 
-RUN apt-get update -y && \
+RUN set -ex && \
+    apt-get update -y && \
     apt-get upgrade -y && \
     apt-get install git -y && \
-    set -ex && \
     apt-get install -y \
         python3 \
         python3-pip \
         python3-venv \
         unixodbc-dev
 RUN ln -s /usr/bin/python3 /usr/bin/python
+
+USER jenkins
