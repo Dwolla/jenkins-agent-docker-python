@@ -23,7 +23,7 @@ RUN apk add --update \
         setuptools \
         virtualenv \
         && \
-    pip3 list --outdated --format=freeze | cut -d = -f 1  | xargs -r -n1 pip install --no-cache-dir -U \
+    pip3 list --outdated --format=freeze | cut -d = -f 1  | xargs -r -n1 pip install --no-cache-dir -U --ignore-installed six \
         && \
     rm -rf /var/cache/apk/*
 
