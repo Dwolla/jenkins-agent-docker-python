@@ -4,3 +4,7 @@
 [![license](https://img.shields.io/github/license/dwolla/jenkins-agent-docker-python.svg?style=flat-square)](https://github.com/Dwolla/jenkins-agent-docker-python/blob/master/LICENSE)
 
 Docker image based on [Dwolla’s core Jenkins Agent Docker image](https://github.com/Dwolla/jenkins-agent-docker-core) making Python build tools available to Jenkins jobs.
+
+GitHub Actions will build the Docker images for multiple supported architectures.
+
+To build locally, run `make all` or `make core-${TAG}` for one of the supported tags.
