@@ -1,30 +1,19 @@
-FROM dwolla/jenkins-agent-core:alpine
-MAINTAINER Dwolla Dev <dev+jenkins-python@dwolla.com>
+ARG CORE_TAG
+
+FROM dwolla/jenkins-agent-core:${CORE_TAG}
+LABEL maintainer="Dwolla Dev <dev+jenkins-agent-core@dwolla.com>"
 LABEL org.label-schema.vcs-url="https://github.com/Dwolla/jenkins-agent-docker-python"
 
 USER root
-RUN apk add --update \
+
+RUN set -ex && \
+    apt-get update -y && \
+    apt-get upgrade -y && \
+    apt-get install git -y && \
+    apt-get install -y \
         python3 \
-        py3-pip \
-        python3-dev \
-        jq \
-        make \
-        git \
-        zip \
-        gcc \
-        g++ \
-        musl-dev \
-        libffi-dev \
-        openssl-dev \
-        unixodbc-dev \
-        && \
-    pip3 install --upgrade --no-cache-dir \
-        pip \
-        setuptools \
-        virtualenv \
-        && \
-    pip3 list --outdated --format=freeze | cut -d = -f 1  | xargs -r -n1 pip install --no-cache-dir -U --ignore-installed six \
-        && \
-    rm -rf /var/cache/apk/*
+        python3-pip \
+        python3-venv \
+        unixodbc-dev
 
 USER jenkins
