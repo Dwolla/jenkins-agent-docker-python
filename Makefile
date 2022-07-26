@@ -1,4 +1,4 @@
-CORE_TAG := 11.0.14.1_1-jdk-2cce095
+CORE_TAG := 4.13.2-1-jdk11-7b03219
 JOB := core-${CORE_TAG}
 CHECK_JOB := check-${CORE_TAG}
 CLEAN_JOB := clean-${CORE_TAG}
