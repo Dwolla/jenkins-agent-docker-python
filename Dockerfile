@@ -18,8 +18,11 @@ RUN set -ex && \
         libreadline-dev \
         libsqlite3-dev \
         libffi-dev \
-        liblzma-dev
+        liblzma-dev \
+        default-libmysqlclient-dev
+
 RUN chown -R jenkins ${JENKINS_HOME}
+
 ENV PYENV_ROOT $JENKINS_HOME/.pyenv
 ENV PATH $PYENV_ROOT/bin:$PATH
 
