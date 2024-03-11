@@ -11,9 +11,26 @@ RUN set -ex && \
     apt-get upgrade -y && \
     apt-get install git -y && \
     apt-get install -y \
-        python3 \
-        python3-pip \
-        python3-venv \
-        unixodbc-dev
+        build-essential \
+        libssl-dev \
+        zlib1g-dev \
+        libbz2-dev \
+        libreadline-dev \
+        libsqlite3-dev \
+        libffi-dev \
+        liblzma-dev
+RUN chown -R jenkins ${JENKINS_HOME}
+ENV PYENV_ROOT $JENKINS_HOME/.pyenv
+ENV PATH $PYENV_ROOT/bin:$PATH
+
+RUN curl https://pyenv.run | bash && \
+    eval "$(pyenv init --path)" && \
+    echo 'eval "$(pyenv virtualenv-init -)"' >> "${JENKINS_HOME}/.bashrc"
+
+RUN chown -R jenkins:jenkins "${JENKINS_HOME}/.pyenv"
+
+RUN pyenv install 3.9
+
+RUN pyenv global 3.9
 
 USER jenkins
