@@ -32,8 +32,8 @@ RUN curl https://pyenv.run | bash && \
 
 RUN chown -R jenkins:jenkins "${JENKINS_HOME}/.pyenv"
 
+USER jenkins
+
 RUN pyenv install 3.9
 
 RUN pyenv global 3.9
-
-USER jenkins
