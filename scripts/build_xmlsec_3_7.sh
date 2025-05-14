@@ -70,8 +70,19 @@ cd xmlsec1-1.3.7
 make
 # Install library to the system
 make install
-# Update dynamic linker cache so programs can find the library
-ldconfig
+
+# Update dynamic linker cache so programs can find the library with ldconfig.
+# - Use '|| true' to prevent script from failing if ldconfig fails. CI/CD environments
+#   like GitHub Actions typically run on x86_64/amd64 systems, and when they need to
+#   build for arm64, they rely on QEMU for emulation. QEMU emulation has known
+#   limitations with certain system calls, and ldconfig is one that commonly has
+#   issues in cross-architecture builds. For this situation, it is ok for ldconfig to
+#   fail with the arm build because the containers typically run on x86_64/amd64 systems
+#   in AWS.
+ldconfig || echo "Warning: ldconfig failed, continuing build. This is expected in " \
+  "some emulated environments. See comment in scripts/build_xmlsec_3_7.sh for more" \
+  "details."
+
 cd /
 # Clean up temporary files
 rm -rf /tmp/xmlsec1-1.3.7*
