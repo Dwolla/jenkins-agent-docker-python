@@ -42,7 +42,6 @@ set -e
 echo -e "\033[94mInstalling xmlsec C library dependencies\033[0m"
 
 # Install xmlsec dependencies
-apt-get update
 apt-get install -y pkg-config libxml2-dev libltdl-dev libxmlsec1-dev libxmlsec1-openssl
 
 # Clean up apt cache to reduce image size
