@@ -79,9 +79,10 @@ make install
 #   issues in cross-architecture builds. For this situation, it is ok for ldconfig to
 #   fail with the arm build because the containers typically run on x86_64/amd64 systems
 #   in AWS.
-ldconfig || echo "Warning: ldconfig failed, continuing build. This is expected in " \
-  "some emulated environments. See comment in scripts/build_xmlsec_3_7.sh for more" \
-  "details."
+# ldconfig || echo "Warning: ldconfig failed, continuing build. This is expected in " \
+#   "some emulated environments. See comment in scripts/build_xmlsec_3_7.sh for more" \
+#   "details."
+ldconfig
 
 cd /
 # Clean up temporary files
