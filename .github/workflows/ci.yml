@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    uses: Dwolla/jenkins-agents-workflow/.github/workflows/build-docker-image.yml@main
+    uses: Dwolla/jenkins-agents-workflow/.github/workflows/build-docker-image.yml@workflow-v3-actions
     with:
       IMAGE_NAME: dwolla/jenkins-agent-python
       TAG_NAME: CORE_TAG
