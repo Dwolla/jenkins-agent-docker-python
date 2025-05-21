@@ -71,6 +71,7 @@ make
 # Install library to the system
 make install
 
+echo -e "\033[94mRunning ldconfig\033[0m"
 # Update dynamic linker cache so programs can find the library with ldconfig.
 # - Use '|| true' to prevent script from failing if ldconfig fails. CI/CD environments
 #   like GitHub Actions typically run on x86_64/amd64 systems, and when they need to
@@ -83,6 +84,7 @@ make install
 #   "some emulated environments. See comment in scripts/build_xmlsec_3_7.sh for more" \
 #   "details."
 ldconfig
+echo -e "\033[94mldconfig completed\033[0m"
 
 cd /
 # Clean up temporary files
