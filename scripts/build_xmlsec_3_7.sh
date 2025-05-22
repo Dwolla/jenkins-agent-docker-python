@@ -71,20 +71,7 @@ make
 # Install library to the system
 make install
 
-echo -e "\033[94mRunning ldconfig\033[0m"
-# Update dynamic linker cache so programs can find the library with ldconfig.
-# - Use '|| true' to prevent script from failing if ldconfig fails. CI/CD environments
-#   like GitHub Actions typically run on x86_64/amd64 systems, and when they need to
-#   build for arm64, they rely on QEMU for emulation. QEMU emulation has known
-#   limitations with certain system calls, and ldconfig is one that commonly has
-#   issues in cross-architecture builds. For this situation, it is ok for ldconfig to
-#   fail with the arm build because the containers typically run on x86_64/amd64 systems
-#   in AWS.
-# ldconfig || echo "Warning: ldconfig failed, continuing build. This is expected in " \
-#   "some emulated environments. See comment in scripts/build_xmlsec_3_7.sh for more" \
-#   "details."
 ldconfig
-echo -e "\033[94mldconfig completed\033[0m"
 
 cd /
 # Clean up temporary files
