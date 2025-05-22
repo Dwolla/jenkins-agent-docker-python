@@ -21,6 +21,16 @@ RUN set -ex && \
         liblzma-dev \
         default-libmysqlclient-dev
 
+# Install xmlsec C library dependencies. This needs the build script to be copied into
+# the container and run as root. THIS IS TEMPORARY AND CAN BE REMOVED ONCE THESE
+# PACKAGES ARE UPDATED IN LINUX AND/OR THE JENKINS IMAGE.
+ARG TARGETPLATFORM
+COPY scripts/build_xmlsec_3_7.sh /tmp/build_xmlsec.sh
+# These only run for Linux architectures.
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ] || [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+    chmod +x /tmp/build_xmlsec.sh && /tmp/build_xmlsec.sh; \
+    fi
+
 RUN chown -R jenkins ${JENKINS_HOME}
 
 ENV PYENV_ROOT $JENKINS_HOME/.pyenv
