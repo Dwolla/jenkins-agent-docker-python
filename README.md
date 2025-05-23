@@ -7,6 +7,9 @@ Docker image based on [Dwolla’s core Jenkins Agent Docker image](https://githu
 
 GitHub Actions will build the Docker images for multiple supported architectures.
 
+## Releases
+Create a release tag in Github. The tag should be v{date}, example: v2025-05-23. Multiple realeases on the same day, add a letter suffix, like v2025-05-23b. You can use the use the “Generate release notes” button to put together the start of the release notes, and then tweak it as you see fit.
+
 ## Local Development
 
 With [yq](https://kislyuk.github.io/yq/) installed, to build this image locally run the following command:
