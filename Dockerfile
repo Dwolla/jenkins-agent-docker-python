@@ -44,6 +44,9 @@ RUN chown -R jenkins:jenkins "${JENKINS_HOME}/.pyenv"
 
 USER jenkins
 
-RUN pyenv install 3.9
+RUN pyenv install 3.11
 
-RUN pyenv global 3.9
+RUN pyenv global 3.11
+
+# Prepend shims so `python3` / `pip` use pyenv (not Debian /usr/bin/python3).
+ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
