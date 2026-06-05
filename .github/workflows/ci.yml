@@ -11,7 +11,7 @@ jobs:
     with:
       IMAGE_NAME: dwolla/jenkins-agent-python
       TAG_NAME: CORE_TAG
-      CORE_TAG: 3261.v9c670a_4748a_9-8-jdk11-2bbea7f
+      CORE_TAG: 3261.v9c670a_4748a_9-8-jdk21-8307125
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
